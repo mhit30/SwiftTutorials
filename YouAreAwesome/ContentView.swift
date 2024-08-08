@@ -7,30 +7,16 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
-    @State private var messageString = "Namaste"
+    @State private var messageString = ""
+    
     var body: some View {
-        
         
         
         VStack {
             Spacer()
-            Image(systemName: "speaker.wave.2", variableValue: 0.6)
-                .resizable()
-                .scaledToFit()
-                .symbolRenderingMode(.multicolor)
-                .padding()
-                .background(Color(hue: 0.538, saturation: 0.773, brightness: 0.893))
-                .shadow(color: .gray, radius:30, x:20, y:20)
-                .cornerRadius(30)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 30).stroke(.teal, lineWidth: 1)
-                )
-                .padding()
-                
-                
-          
-           
+            
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -44,15 +30,18 @@ struct ContentView: View {
             Spacer()
             
             HStack{
-                Button("Awesome") {
-                    messageString = "You are awesome!"
+                Button("Toggle") {
+                    let message1 = "You are awesome!"
+                    let message2 = "You are great!"
+                    if messageString == message1 {
+                        messageString = message2
+                    } else {
+                        messageString = message1
+                    }
+                   
                 }
                 .buttonStyle(.borderedProminent)
-                Spacer()
-                Button("Great") {
-                    messageString = "You are great!"
-                }
-                .buttonStyle(.borderedProminent)
+            
             }
             .padding()
             

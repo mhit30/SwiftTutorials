@@ -33,12 +33,7 @@ struct ContentView: View {
                 Button("Toggle") {
                     let message1 = "You are awesome!"
                     let message2 = "You are great!"
-                    if messageString == message1 {
-                        messageString = message2
-                    } else {
-                        messageString = message1
-                    }
-                   
+                    messageString = (messageString == message1 ? message2 : message1)
                 }
                 .buttonStyle(.borderedProminent)
             

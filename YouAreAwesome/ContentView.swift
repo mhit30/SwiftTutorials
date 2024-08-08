@@ -8,56 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = "When the Genius Bar needs help, they call you!"
+    @State private var messageString = "Namaste"
     var body: some View {
         
         
         
         VStack {
-            
-            Group {
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-                Text("I am a text view!")
-            }.font(.title)
-            .fontWeight(.heavy)
-       
-            
-            Text("You Have Skills!")
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .foregroundColor(Color("Gold-BC"))
-                .padding()
-                .background(Color("Maroon-BC"))
-                .cornerRadius(15)
             Spacer()
+            Image(systemName: "speaker.wave.2", variableValue: 0.6)
+                .resizable()
+                .scaledToFit()
+                .symbolRenderingMode(.multicolor)
+                .padding()
+                .background(Color(hue: 0.538, saturation: 0.773, brightness: 0.893))
+                .shadow(color: .gray, radius:30, x:20, y:20)
+                .cornerRadius(30)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 30).stroke(.teal, lineWidth: 1)
+                )
+                .padding()
+                
+                
+          
+           
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
-                .foregroundColor(.red)
+                .foregroundColor(.pink)
                 .frame(height: 150)
                 .frame(maxWidth:.infinity)
-                .border(.orange, width:1)
                 .padding()
             
             Spacer()
-            
-            Divider()
-                .background(.black)
-                .padding()
-                .frame(width:150.0)
-            
             
             HStack{
                 Button("Awesome") {

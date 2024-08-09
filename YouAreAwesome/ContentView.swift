@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var messageArr = ["","You are awesome!", "You are great!", "You are cool!", "You are fantastic!"]
+    @State private var messageString = ""
     @State private var messageArrIndex = 0
     @State private var imageString = "image"
     @State private var imageNum = 0
@@ -27,7 +27,7 @@ struct ContentView: View {
             
             Spacer()
             
-            Text(messageArr[messageArrIndex])
+            Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
                 .minimumScaleFactor(0.5)
@@ -42,16 +42,13 @@ struct ContentView: View {
             HStack{
                 Button("Show Message") {
                     
-                    messageArrIndex += 1
-                    imageNum += 1
+                    let messageArr = ["You are awesome!", "You are great!", "You are cool!", "You are fantastic!"]
+
                     
-                    if messageArrIndex > messageArr.count - 1 {
-                        messageArrIndex = 1
-                    }
-                    if imageNum > 9 {
-                        imageNum = 0
-                    }
+                    messageArrIndex = Int.random(in: 0...messageArr.count-1)
                     
+                    messageString = messageArr[messageArrIndex]
+                    imageNum = Int.random(in: 0...9)
                     imageString = "image\(imageNum)"
                 
                     

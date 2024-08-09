@@ -10,22 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var messageString = ""
-    @State private var messageArrIndex = 0
+    @State private var messageArrIndex = -1
     @State private var imageString = "image"
-    @State private var imageNum = 0
+    @State private var imageNum = -1
     var body: some View {
         
         
         VStack {
-            
-            Image(imageString)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(30)
-                .shadow(radius: 30)
-                .padding()
-            
-            Spacer()
             
             Text(messageString)
                 .font(.largeTitle)
@@ -39,16 +30,36 @@ struct ContentView: View {
             
             Spacer()
             
+            Image(imageString)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(30)
+                .shadow(radius: 30)
+                .padding()
+            
+            Spacer()
+            
+      
+            
             HStack{
                 Button("Show Message") {
                     
                     let messageArr = ["You are awesome!", "You are great!", "You are cool!", "You are fantastic!"]
 
+                    var lastArrIndex = messageArrIndex
                     
-                    messageArrIndex = Int.random(in: 0...messageArr.count-1)
-                    
+                    repeat {
+                        messageArrIndex = Int.random(in: 0...messageArr.count-1)
+                    } while messageArrIndex == lastArrIndex
+    
                     messageString = messageArr[messageArrIndex]
-                    imageNum = Int.random(in: 0...9)
+                    
+                    var lastImageNum = imageNum
+                    
+                    repeat {
+                        imageNum = Int.random(in: 0...9)
+                    } while imageNum == lastImageNum
+                    
                     imageString = "image\(imageNum)"
                 
                     

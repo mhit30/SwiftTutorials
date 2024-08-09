@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
-
+import AVFAudio
 
 struct ContentView: View {
     @State private var messageString = ""
     @State private var messageArrIndex = -1
     @State private var imageString = "image"
     @State private var imageNum = -1
+    @State private var soundNum = -1
+    @State private var audioPlayer: AVAudioPlayer!
     var body: some View {
         
         
@@ -46,7 +48,7 @@ struct ContentView: View {
                     
                     let messageArr = ["You are awesome!", "You are great!", "You are cool!", "You are fantastic!"]
 
-                    var lastArrIndex = messageArrIndex
+                    let lastArrIndex = messageArrIndex
                     
                     repeat {
                         messageArrIndex = Int.random(in: 0...messageArr.count-1)
@@ -54,7 +56,7 @@ struct ContentView: View {
     
                     messageString = messageArr[messageArrIndex]
                     
-                    var lastImageNum = imageNum
+                    let lastImageNum = imageNum
                     
                     repeat {
                         imageNum = Int.random(in: 0...9)
@@ -62,7 +64,25 @@ struct ContentView: View {
                     
                     imageString = "image\(imageNum)"
                 
+                    let lastSoundNum = soundNum
                     
+                    repeat {
+                        soundNum = Int.random(in: 0...5)
+                    } while soundNum == lastSoundNum
+                    
+                    let soundName = "sound\(soundNum)"
+                    
+                    guard let soundFile = NSDataAsset(name: soundName) else {
+                        print("😡 Could not real file name \(soundName)")
+                        return
+                    }
+                    
+                    do {
+                        audioPlayer = try AVAudioPlayer(data: soundFile.data)
+                        audioPlayer.play()
+                    } catch {
+                        print("😡 Error: \(error.localizedDescription) creating audioPlayer")
+                    }
                 }
                 .buttonStyle(.borderedProminent)
             

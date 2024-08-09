@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var messageString = ""
-    @State private var imageString = ""
+    @State private var imageString = "image"
+    @State private var imageNum = 0
     var body: some View {
         
         
@@ -41,10 +42,18 @@ struct ContentView: View {
                 Button("Toggle") {
                     let message1 = "You are awesome!"
                     let message2 = "You are great!"
-                    let image0 = "image0"
-                    let image1 = "image1"
+           
                     messageString = (messageString == message1 ? message2 : message1)
-                    imageString = (imageString == image0 ? image1 : image0)
+                   
+                    imageNum += 1
+                    
+                    if imageNum > 9 {
+                        imageNum = 0
+                    }
+                    
+                    imageString = "image\(imageNum)"
+                    print(imageString)
+                    
                 }
                 .buttonStyle(.borderedProminent)
             
